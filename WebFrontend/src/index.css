@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-base text-ink font-sans antialiased;
+    /* Layered atmosphere: a faint instrument grid + a soft radial glow. */
+    background-image:
+      radial-gradient(
+        120% 80% at 85% -10%,
+        rgba(163, 230, 53, 0.06),
+        transparent 60%
+      ),
+      radial-gradient(
+        100% 60% at 0% 0%,
+        rgba(34, 211, 238, 0.05),
+        transparent 55%
+      ),
+      linear-gradient(rgba(30, 39, 48, 0.5) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(30, 39, 48, 0.5) 1px, transparent 1px);
+    background-size:
+      100% 100%,
+      100% 100%,
+      48px 48px,
+      48px 48px;
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    @apply bg-signal/30 text-ink-bright;
+  }
+
+  /* Slim instrument-style scrollbars */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #2a3641 transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: #1e2730;
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background: #2a3641;
+    background-clip: content-box;
+  }
+}
+
+@layer components {
+  .panel {
+    @apply rounded-xl border border-line bg-panel/80 shadow-panel backdrop-blur-sm;
+  }
+
+  .label-eyebrow {
+    @apply font-mono text-[11px] uppercase tracking-[0.18em] text-muted;
+  }
+
+  .stat-num {
+    @apply font-mono tabular-nums;
+  }
+
+  .focus-ring {
+    @apply outline-none ring-1 ring-transparent focus-visible:ring-signal/60 focus-visible:border-signal/50;
+  }
+}
